@@ -6,30 +6,41 @@
 //
 
 import XCTest
+@testable import PaLM
 
 final class GenerateTextResponseTests: XCTestCase {
 
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
+    func testDecode() throws {
+        let json = try XCTUnwrap(Bundle.module.url(forResource: "generateTextResponse", withExtension: "json"))
+        let data = try Data(contentsOf: json)
 
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
+        let response = try JSONDecoder().decode(GenerateTextResponse.self, from: data)
 
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
-    }
+        let expectedSafetyRating = SafetyRating(category: .unspecified, probability: .unspecified)
+        let expectedCitationSource = CitationSource(startIndex: 2, endIndex: 5, uri: "testUri", license: "testLicense")
+        let expectedCitationMetadata = CitationMetadata(citationSources: [expectedCitationSource])
+        let expectedTextCompletion = TextCompletion(
+            output: "This is a message",
+            safetyRatings: [expectedSafetyRating],
+            citationMetadata: expectedCitationMetadata
+        )
 
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
+        let expectedFilter = ContentFilter(reason: .other, message: "This is a message")
+
+        let expectedSafetyFeedback = SafetyFeedback(
+            rating: SafetyRating(
+                category: .unspecified,
+                probability: .unspecified
+            ),
+            setting: SafetySetting(
+                category: .unspecified,
+                threshold: .unspecified
+            )
+        )
+
+        XCTAssertEqual(response.candidates, [expectedTextCompletion])
+        XCTAssertEqual(response.filters, [expectedFilter])
+        XCTAssertEqual(response.safetyFeedback, [expectedSafetyFeedback])
     }
 
 }

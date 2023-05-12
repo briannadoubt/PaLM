@@ -1,0 +1,41 @@
+{
+  "candidates": [
+    {
+      "output": "This is a message",
+      "safetyRatings": [
+        {
+          "category": "HARM_CATEGORY_UNSPECIFIED",
+          "probability": "HARM_PROBABILITY_UNSPECIFIED"
+        }
+      ],
+      "citationMetadata": {
+        "citationSources": [
+          {
+            "startIndex": 2,
+            "endIndex": 5,
+            "uri": "testUri",
+            "license": "testLicense"
+          }
+        ]
+      }
+    }
+  ],
+  "filters": [
+    {
+      "reason": "OTHER",
+      "message": "This is a message"
+    }
+  ],
+  "safetyFeedback": [
+    {
+      "rating": {
+        "category": "HARM_CATEGORY_UNSPECIFIED",
+        "probability": "HARM_PROBABILITY_UNSPECIFIED"
+      },
+      "setting": {
+        "category": "HARM_CATEGORY_UNSPECIFIED",
+        "threshold": "HARM_BLOCK_THRESHOLD_UNSPECIFIED"
+      }
+    }
+  ]
+}

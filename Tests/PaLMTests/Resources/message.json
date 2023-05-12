@@ -1,0 +1,14 @@
+{
+  "author": "1",
+  "content": "This is a message",
+  "citationMetadata": {
+  "citationSources": [
+      {
+        "startIndex": 2,
+        "endIndex": 5,
+        "uri": "testUri",
+        "license": "testLicense"
+      }
+    ]
+  }
+}

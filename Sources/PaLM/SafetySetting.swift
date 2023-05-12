@@ -10,7 +10,7 @@ import Foundation
 /// Safety setting, affecting the safety-blocking behavior.
 ///
 /// Passing a safety setting for a category changes the allowed proability that content is blocked.
-public struct SafetySetting: Codable {
+public struct SafetySetting: Codable, Equatable {
     /// Required. The category for this setting.
     var category: HarmCategory
 

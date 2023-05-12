@@ -6,30 +6,19 @@
 //
 
 import XCTest
+@testable import PaLM
 
 final class HarmCategoryTests: XCTestCase {
 
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
-    }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
+    func testCases() {
+        XCTAssertEqual(HarmCategory.allCases.count, 7)
+        XCTAssertEqual(HarmCategory.unspecified.rawValue, "HARM_CATEGORY_UNSPECIFIED")
+        XCTAssertEqual(HarmCategory.derogatory.rawValue, "HARM_CATEGORY_DEROGATORY")
+        XCTAssertEqual(HarmCategory.toxicity.rawValue, "HARM_CATEGORY_TOXICITY")
+        XCTAssertEqual(HarmCategory.violence.rawValue, "HARM_CATEGORY_VIOLENCE")
+        XCTAssertEqual(HarmCategory.sexual.rawValue, "HARM_CATEGORY_SEXUAL")
+        XCTAssertEqual(HarmCategory.medical.rawValue, "HARM_CATEGORY_MEDICAL")
+        XCTAssertEqual(HarmCategory.dangerous.rawValue, "HARM_CATEGORY_DANGEROUS")
     }
 
 }

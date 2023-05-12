@@ -6,30 +6,123 @@
 //
 
 import XCTest
+@testable import PaLM
 
-final class MessagePrompt: XCTestCase {
+final class MessagePromptTests: XCTestCase {
 
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+    func testInitialization() {
+        _ = MessagePrompt(
+            context: "testContext",
+            examples: [
+                Example(
+                    input: Message(
+                        author: "1",
+                        content: "This is a message",
+                        citationMetadata: CitationMetadata(
+                            citationSources: [
+                                CitationSource(
+                                    startIndex: 2,
+                                    endIndex: 5,
+                                    uri: "testUri",
+                                    license: "testLicense"
+                                )
+                            ]
+                        )
+                    ),
+                    output: Message(
+                        author: "1",
+                        content: "This is a message",
+                        citationMetadata: CitationMetadata(
+                            citationSources: [
+                                CitationSource(
+                                    startIndex: 2,
+                                    endIndex: 5,
+                                    uri: "testUri",
+                                    license: "testLicense"
+                                )
+                            ]
+                        )
+                    )
+                )
+            ],
+            messages: [
+                Message(
+                    author: "1",
+                    content: "This is a message",
+                    citationMetadata: CitationMetadata(
+                        citationSources: [
+                            CitationSource(
+                                startIndex: 2,
+                                endIndex: 5,
+                                uri: "testUri",
+                                license: "testLicense"
+                            )
+                        ]
+                    )
+                )
+            ]
+        )
     }
 
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
+    func testDecoding() throws {
+        let expectedMessagePrompt = MessagePrompt(
+            context: "testContext",
+            examples: [
+                Example(
+                    input: Message(
+                        author: "1",
+                        content: "This is a message",
+                        citationMetadata: CitationMetadata(
+                            citationSources: [
+                                CitationSource(
+                                    startIndex: 2,
+                                    endIndex: 5,
+                                    uri: "testUri",
+                                    license: "testLicense"
+                                )
+                            ]
+                        )
+                    ),
+                    output: Message(
+                        author: "1",
+                        content: "This is a message",
+                        citationMetadata: CitationMetadata(
+                            citationSources: [
+                                CitationSource(
+                                    startIndex: 2,
+                                    endIndex: 5,
+                                    uri: "testUri",
+                                    license: "testLicense"
+                                )
+                            ]
+                        )
+                    )
+                )
+            ],
+            messages: [
+                Message(
+                    author: "1",
+                    content: "This is a message",
+                    citationMetadata: CitationMetadata(
+                        citationSources: [
+                            CitationSource(
+                                startIndex: 2,
+                                endIndex: 5,
+                                uri: "testUri",
+                                license: "testLicense"
+                            )
+                        ]
+                    )
+                )
+            ]
+        )
 
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
-    }
+        let json = try XCTUnwrap(Bundle.module.url(forResource: "messagePrompt", withExtension: "json"))
+        let data = try Data(contentsOf: json)
 
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
+        let messagePrompt = try JSONDecoder().decode(MessagePrompt.self, from: data)
+
+        XCTAssertEqual(messagePrompt, expectedMessagePrompt)
     }
 
 }

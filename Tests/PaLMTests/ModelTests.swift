@@ -6,30 +6,47 @@
 //
 
 import XCTest
+@testable import PaLM
 
 final class ModelTests: XCTestCase {
 
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+    func testInitialization() {
+        _ = Model(
+            name: "models/text-bison-001",
+            baseModelId: "001",
+            version: "001",
+            displayName: "Text Bison",
+            description: "Model targeted for text generation.",
+            inputTokenLimit: 8196,
+            outputTokenLimit: 1024,
+            supportedGenerationMethods: ["generateText"],
+            temperature: 0.7,
+            topP: 0.95,
+            topK: 40
+        )
     }
 
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
+    func testDecoding() throws {
+        let expectedModel = Model(
+            name: "models/text-bison-001",
+            baseModelId: "001",
+            version: "001",
+            displayName: "Text Bison",
+            description: "Model targeted for text generation.",
+            inputTokenLimit: 8196,
+            outputTokenLimit: 1024,
+            supportedGenerationMethods: ["generateText"],
+            temperature: 0.7,
+            topP: 0.95,
+            topK: 40
+        )
 
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
-    }
+        let json = try XCTUnwrap(Bundle.module.url(forResource: "model", withExtension: "json"))
+        let data = try Data(contentsOf: json)
 
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
+        let model = try JSONDecoder().decode(Model.self, from: data)
+
+        XCTAssertEqual(model, expectedModel)
     }
 
 }

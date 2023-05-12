@@ -1,0 +1,19 @@
+{
+    "output": "This is a message",
+    "safetyRatings": [
+        {
+            "category": "HARM_CATEGORY_UNSPECIFIED",
+            "probability": "HARM_PROBABILITY_UNSPECIFIED"
+        }
+    ],
+    "citationMetadata": {
+      "citationSources": [
+        {
+          "startIndex": 2,
+          "endIndex": 5,
+          "uri": "testUri",
+          "license": "testLicense"
+        }
+      ]
+    }
+}

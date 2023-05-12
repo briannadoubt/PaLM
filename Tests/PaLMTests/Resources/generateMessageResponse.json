@@ -1,0 +1,40 @@
+{
+  "candidates": [
+    {
+      "author": "1",
+      "content": "Hi",
+      "citationMetadata": {
+        "citationSources": [
+          {
+            "startIndex": 2,
+            "endIndex": 5,
+            "uri": "testUri",
+            "license": "testLicense"
+          }
+        ]
+      }
+    }
+  ],
+  "messages": [
+    {
+      "author": "1",
+      "content": "Hi",
+      "citationMetadata": {
+        "citationSources": [
+          {
+            "startIndex": 2,
+            "endIndex": 5,
+            "uri": "testUri",
+            "license": "testLicense"
+          }
+        ]
+      }
+    }
+  ],
+  "filters": [
+    {
+      "reason": "OTHER",
+      "message": "This is a message"
+    }
+  ]
+}

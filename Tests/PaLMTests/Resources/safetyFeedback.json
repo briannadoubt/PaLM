@@ -1,0 +1,10 @@
+{
+    "rating": {
+        "category": "HARM_CATEGORY_UNSPECIFIED",
+        "probability": "HARM_PROBABILITY_UNSPECIFIED"
+    },
+    "setting": {
+        "category": "HARM_CATEGORY_UNSPECIFIED",
+        "threshold": "HARM_BLOCK_THRESHOLD_UNSPECIFIED"
+    }
+}
